@@ -6,7 +6,7 @@ let issueId: string; // To store the created issue ID for later use
 
 test.describe('Jira Issues API Workflow', () => {
   test('Create a JIRA issue via API', async ({ request }) => {
-    const response = await request.post(`${config.JIRA_BASE_URL}/rest/api/3/issue`, {
+    const response = await request.post(`${config.JIRA_BASE_URL}/rest/api/2/issue`, {
       headers: {
         Authorization: `Basic ${authToken}`,
         'Content-Type': 'application/json',
@@ -39,19 +39,15 @@ test.describe('Jira Issues API Workflow', () => {
       },
     });
 
-    console.log(`Status Code: ${await response.text()}`);
     expect(response.status()).toBe(201);
-
     const responseBody = await response.json();
     console.log('Response:', responseBody);
     expect(responseBody).toHaveProperty('id');
-
     issueId = responseBody.id;
     console.log(`Created issue ID: ${issueId}`);
   });
 
   test('Get the Created Issue', async ({ request }) => {
-
     console.log(authToken)
     const response = await request.get(`${config.JIRA_BASE_URL}/rest/api/2/issue/${issueId}`, {
       headers: {
@@ -70,7 +66,6 @@ test.describe('Jira Issues API Workflow', () => {
         Authorization: `Basic ${authToken}`,
       },
     });
-
     expect(response.status()).toBe(204);
     console.log(`Deleted issue with ID: ${issueId}`);
   });
