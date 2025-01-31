@@ -6,43 +6,54 @@ let issueId: string; // To store the created issue ID for later use
 
 test.describe('Jira Issues API Workflow', () => {
   test('Create a JIRA issue via API', async ({ request }) => {
-    const response = await request.get(`${config.JIRA_BASE_URL}/rest/api/2/issue`, {
+    const response = await request.post(`${config.JIRA_BASE_URL}/rest/api/3/issue`, {
       headers: {
         Authorization: `Basic ${authToken}`,
+        'Content-Type': 'application/json',
       },
       data: {
         fields: {
           project: {
-            id: '10001',
+            id: '10001', // Replace with your project ID
           },
           issuetype: {
-            id: '10008',
+            id: '10008', // Replace with your issue type ID
           },
           summary: 'Automated Test Issue',
           description: {
+            type: 'doc',
+            version: 1,
             content: [
               {
-                type: 'text',
-                text: 'This is an automated test issue created by Playwright.',
+                type: 'paragraph',
+                content: [
+                  {
+                    type: 'text',
+                    text: 'This is an automated test issue created by Playwright.',
+                  },
+                ],
               },
             ],
           },
         },
       },
     });
-    console.log(`Status Code: ${response.status()}`);
+
+    console.log(`Status Code: ${await response.text()}`);
     expect(response.status()).toBe(201);
+
     const responseBody = await response.json();
     console.log('Response:', responseBody);
     expect(responseBody).toHaveProperty('id');
-    issueId = responseBody.id
+
+    issueId = responseBody.id;
     console.log(`Created issue ID: ${issueId}`);
   });
 
-
   test('Get the Created Issue', async ({ request }) => {
+
     console.log(authToken)
-    const response = await request.get(`${config.JIRA_BASE_URL}/rest/api/2/status/${issueId}`, {
+    const response = await request.get(`${config.JIRA_BASE_URL}/rest/api/2/issue/${issueId}`, {
       headers: {
         Authorization: `Basic ${authToken}`,
       },
