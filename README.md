@@ -42,6 +42,8 @@ Before using this framework, ensure you have the following installed:
 ├── config.ts               # fetch .env values and use it in tests folder
 ├── package.json            # Node.js dependencies
 └── README.md               # This file
+```
 
-
-
+## Screnshots
+![Screenshot 2025-02-01 003609.png](images/Screenshot%202025-02-01%20003609.png)
+![Screenshot 2025-02-01 003640.png](images/Screenshot%202025-02-01%20003640.png)
