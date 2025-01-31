@@ -20,16 +20,21 @@ Before using this framework, ensure you have the following installed:
   `npm install`
 3. Configure Environment Variables:
   Create a .env file in the root directory.
-  Add your JIRA API credentials:
-  `JIRA_BASE_URL=https://your-jira-instance.atlassian.net`
-  `JIRA_API_TOKEN=your-api-token`
-  `JIRA_USERNAME=your-email@example.com`
-4. Verify Setup:
+
+4. Add your JIRA API credentials:
+
+    JIRA_BASE_URL=https://your-jira-instance.atlassian.net
+  
+    JIRA_API_TOKEN=your-api-token
+  
+    JIRA_USERNAME=your-email@example.com
+  
+5. Verify Setup:
   `npx playwright test:jira`
 
 
 ## Framework structure
-jira-playwright-ts/
+```jira-playwright-ts/
 ├── tests/                  # Test files contains create, read and delete functions
 │   ├── jira.spec.ts
 ├── .env                    # Environment variables
