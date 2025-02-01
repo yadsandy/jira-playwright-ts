@@ -19,7 +19,8 @@ Before using this framework, ensure you have the following installed:
 2. Install Dependencies:
   `npm install`
 3. Configure Environment Variables:
-  Create a .env file in the root directory.
+  Create a .env file in the root directory and run 
+  `npm install dotenv`
 
 4. Add your JIRA API credentials:
 
@@ -37,6 +38,10 @@ Before using this framework, ensure you have the following installed:
 ```jira-playwright-ts/
 ├── tests/                  # Test files contains create, read and delete functions
 │   ├── jira.spec.ts
+|── api/
+|   ├── issue-create.ts     # have method to create an issue on JIRA
+│   ├── issue-delete.ts     # have method to delete an issue on JIRA
+│   ├── issue-read.ts       # have method to read an issue from JIRA
 ├── .env                    # Environment variables
 ├── playwright.config.ts    # Playwright configuration
 ├── config.ts               # fetch .env values and use it in tests folder
@@ -44,6 +49,6 @@ Before using this framework, ensure you have the following installed:
 └── README.md               # This file
 ```
 
-## Screnshots
-![Screenshot 2025-02-01 003609.png](images/Screenshot%202025-02-01%20003609.png)
-![Screenshot 2025-02-01 003640.png](images/Screenshot%202025-02-01%20003640.png)
+## Screenshots
+![Screenshot 2025-02-01 103922.png](images/Screenshot%202025-02-01%20103922.png)
+![Screenshot 2025-02-01 103947.png](images/Screenshot%202025-02-01%20103947.png)
